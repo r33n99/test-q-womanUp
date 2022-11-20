@@ -1,0 +1,70 @@
+.list {
+    border-radius: 30px;
+    overflow: hidden;
+    background: rgb(228, 225, 225);
+    min-height: 500px;
+}
+
+.table {
+    border: 1px solid #eee;
+    table-layout: fixed;
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+
+    .talbe__btn-delete {
+        color: #fff;
+        text-decoration: none;
+        user-select: none;
+        background: rgb(212, 75, 56);
+        padding: .7em 1.5em;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+
+        &:hover {
+            background: rgb(232, 95, 76);
+        }
+
+        &:active {
+            background: rgb(152, 15, 0);
+        }
+    }
+
+    .table__btn-edit {
+        color: #fff;
+        text-decoration: none;
+        user-select: none;
+        background: rgb(15, 133, 44);
+        padding: .7em 1.5em;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+
+        &:hover {
+            background: rgb(20, 165, 56);
+        }
+
+        &:active {
+            background: rgb(9, 78, 26);
+        }
+    }
+}
+
+.table th {
+    font-weight: bold;
+    padding: 10px;
+    background: #efefef;
+    border-bottom: 1px solid #dddddd;
+}
+
+.table tbody td {
+    padding: 5px 10px;
+    text-align: center;
+    border-bottom: 3px solid #dddddd;
+
+}
+
+.table-row {
+    background: grey;
+}

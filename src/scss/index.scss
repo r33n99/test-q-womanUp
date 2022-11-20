@@ -1,0 +1,47 @@
+@import url("./components/__list.scss");
+@import url("./components/__modal.scss");
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: rgb(38, 29, 29);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 1200px;
+  min-height: 500px;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.create-todo {
+  color: #fff;
+  text-decoration: none;
+  user-select: none;
+  background: rgb(212, 75, 56);
+  padding: .7em 1.5em;
+  outline: none;
+  margin-bottom: 20px;
+
+  &:hover {
+    background: rgb(232, 95, 76);
+  }
+
+  &:active {
+    background: rgb(152, 15, 0);
+  }
+}
