@@ -11,6 +11,7 @@ export const ListItem = ({
   fetchDeleteTodo,
   fetchEditTodo,
   setTodos,
+  setTypeModal,
 }) => {
   const [diffDate, setDiffDate] = React.useState(false);
 
@@ -27,6 +28,11 @@ export const ListItem = ({
     fetchEditTodo(id, { status: e.target.checked });
   };
 
+  const handleChangeType = () => {
+    handleEditModal(id);
+    setTypeModal("edit");
+  };
+
   React.useEffect(() => {
     const d = new Date();
     const day = d.getDate();
@@ -39,7 +45,7 @@ export const ListItem = ({
   return (
     <tr className={diffDate || status ? "table-row" : ""}>
       <td>
-        <input checked={status} onChange={handleChangeStatus} type="checkbox" />
+        <input className="my-checkbox" checked={status} onChange={handleChangeStatus} type="checkbox" />
       </td>
       <td>{title ? title : "заголовок отсутствует"}</td>
       <td>{description ? description : "описание отсутствует"}</td>
@@ -49,14 +55,14 @@ export const ListItem = ({
       <td>{file.name || <p>нету</p>}</td>
       <td>
         <button
-          className="talbe__btn-delete"
+          className="talbe__btn btn-red"
           onClick={() => fetchDeleteTodo(id)}
         >
           удалить
         </button>
       </td>
       <td>
-        <button className="table__btn-edit" onClick={() => handleEditModal(id)}>
+        <button className="table__btn btn-green" onClick={handleChangeType}>
           редактировать
         </button>
       </td>

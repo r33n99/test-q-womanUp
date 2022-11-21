@@ -1,8 +1,7 @@
 import axios from "axios";
 import React from "react";
 import useFetch from "../hooks/useFetch";
-import { CreateTodo } from "./CreateTodo";
-import { EditTodo } from "./EditTodo";
+import { Modal } from "./Modal";
 import { ListItem } from "./ListItem";
 
 export const List = () => {
@@ -10,9 +9,9 @@ export const List = () => {
     "https://637744b581a568fc251093f7.mockapi.io/todos"
   );
   const [todos, setTodos] = React.useState([]);
-  const [editMode, setEditMode] = React.useState(false);
+  const [openModal, setOpenModal] = React.useState(false);
   const [editedTodo, setEditedTodo] = React.useState();
-  const [createMode, setCreateMode] = React.useState(false);
+  const [typeModal,setTypeModal] = React.useState("")
   const handleEditTodo = (obj) => {
     setTodos(
       todos.map((el) => {
@@ -26,7 +25,9 @@ export const List = () => {
     fetchEditTodo(obj.id, obj);
   };
 
-  const createTodo = async (obj) => {
+  console.log(typeModal)
+
+  const fetchCreateTodo = async (obj) => {
     try {
       setTodos([...todos, obj]);
       const response = await axios.post(
@@ -69,8 +70,14 @@ export const List = () => {
   const handleEditModal = (id) => {
     const todo = todos.find((el) => el.id === id);
     setEditedTodo(todo);
-    setEditMode((prev) => !prev);
+    setOpenModal((prev) => !prev);
   };
+
+  const handleCreateModal = () => {
+    setTypeModal("create")
+    setOpenModal((prev) => !prev);
+
+  }
 
   React.useEffect(() => {
     setTodos(data);
@@ -88,19 +95,19 @@ export const List = () => {
 
   return (
     <>
-      {createMode && (
-        <CreateTodo setCreateMode={setCreateMode} createTodo={createTodo} />
-      )}
-      {editMode && (
-        <EditTodo
+      {openModal && (
+        <Modal
           editedTodo={editedTodo}
-          setEditMode={setEditMode}
+          setOpenModal={setOpenModal}
           handleEditTodo={handleEditTodo}
+          typeModal={typeModal}
+          fetchCreateTodo={fetchCreateTodo}
         />
       )}
       <div className="container">
-        <div>
-          <button onClick={() => setCreateMode(true)} className="create-todo">
+        <div className="up-block">
+          <h2>Just ToDo it :)</h2>
+          <button onClick={handleCreateModal} className="create-todo">
             Создать новую задачу
           </button>
         </div>
@@ -121,7 +128,7 @@ export const List = () => {
                   <ListItem
                     key={todo.id}
                     {...todo}
-                    setEditMode={setEditMode}
+                    setTypeModal={setTypeModal}
                     handleEditModal={handleEditModal}
                     fetchDeleteTodo={fetchDeleteTodo}
                     fetchEditTodo={fetchEditTodo}
