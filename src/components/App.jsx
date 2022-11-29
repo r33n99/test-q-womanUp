@@ -1,11 +1,11 @@
-import { List } from "./List";
+import { List } from './List';
 
 function App() {
-  return (
-    <>
-      <List />
-    </>
-  );
+    return (
+        <>
+            <List />
+        </>
+    );
 }
 
 export default App;
